@@ -78,7 +78,7 @@ export function MobileNav({ activeSection = '' }) {
   }, [open, closeMenu]);
 
   return (
-    <div className="mobile-nav md:hidden">
+    <div className="mobile-nav">
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {menuMessage}
       </div>
@@ -120,7 +120,7 @@ export function MobileNav({ activeSection = '' }) {
         aria-modal="true"
         aria-label="Main navigation"
         className={`mobile-nav__panel ${open ? 'mobile-nav__panel--open' : ''}`}
-        hidden={!open}
+        aria-hidden={!open}
       >
         <nav aria-label="Mobile">
           <ul className="mobile-nav__links">

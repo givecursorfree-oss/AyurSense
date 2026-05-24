@@ -55,7 +55,7 @@ export function AppHeader({ showReportLink = false, activeSection = '' }) {
         <div className="app-nav__actions">
           <PrimaryCtaLink
             variant="simple"
-            className="app-nav__cta hidden shrink-0 md:inline-flex"
+            className="app-nav__cta app-nav__cta--desktop shrink-0"
           >
             {onIntake ? 'Continue analysis' : 'Start clinical analysis'}
           </PrimaryCtaLink>

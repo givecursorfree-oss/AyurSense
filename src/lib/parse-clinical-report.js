@@ -35,6 +35,14 @@ function sanitizeReportSource(source) {
   return value;
 }
 
+const PLACEHOLDER_LABEL = /^(?:\?|—|-|\.|n\/a|na|unknown|null|none)$/i;
+
+/** @param {string} [value] */
+export function isMeaningfulLabel(value) {
+  const trimmed = String(value ?? '').trim();
+  return trimmed.length > 0 && !PLACEHOLDER_LABEL.test(trimmed);
+}
+
 /**
  * @param {string} sectionBody
  * @returns {{ name: string, confidence: string, canonical: string, preview: string }[]}

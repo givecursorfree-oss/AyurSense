@@ -8,6 +8,30 @@ import { onAppScroll } from '@/lib/lenis-scroll';
  * through the viewport (startOffset / endOffset are % of viewport height).
  */
 
+function parseHexColor(hex) {
+  const raw = hex.replace('#', '').trim();
+  const full =
+    raw.length === 3
+      ? raw
+          .split('')
+          .map((c) => c + c)
+          .join('')
+      : raw;
+  const n = Number.parseInt(full, 16);
+  if (Number.isNaN(n)) return [0, 0, 0];
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+
+function blendHexColors(from, to, amount) {
+  const t = Math.min(Math.max(amount, 0), 1);
+  const [r1, g1, b1] = parseHexColor(from);
+  const [r2, g2, b2] = parseHexColor(to);
+  const r = Math.round(r1 + (r2 - r1) * t);
+  const g = Math.round(g1 + (g2 - g1) * t);
+  const b = Math.round(b1 + (b2 - b1) * t);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 function segmentStyle(dimOpacity, dimColor, litColor) {
   const color = dimColor ? `color:${dimColor};` : '';
   return `display:inline;opacity:${dimOpacity};will-change:opacity,color;${color}`;
@@ -87,6 +111,9 @@ export function attachTextRevealScroll(textEl, options = {}) {
     dimOpacity = 0.2,
     dimColor = '',
     litColor = '',
+    snapCompleteEarly = true,
+    /** 'top' tracks element top (longer, clearer scrub); 'center' uses vertical center */
+    progressBy = 'center',
     onProgress,
   } = options;
 
@@ -103,9 +130,21 @@ export function attachTextRevealScroll(textEl, options = {}) {
 
   if (segments.length === 0) return () => {};
 
-  const applyLit = (seg, opacity) => {
+  /** @param {number} blend 0 = dim, 1 = fully lit */
+  const applyLit = (seg, blend) => {
+    const t = Math.min(Math.max(blend, 0), 1);
+    // Ease-in so the “lighting up” reads clearly mid-scroll, not only at the end
+    const eased = t * t * (3 - 2 * t);
+
+    if (litColor && dimColor) {
+      seg.style.opacity = String(dimOpacityVal + eased * (1 - dimOpacityVal));
+      seg.style.color = blendHexColors(dimColor, litColor, eased);
+      seg.style.fontWeight = eased >= 0.92 ? '500' : '300';
+      return;
+    }
+    const opacity = dimOpacityVal + eased * (1 - dimOpacityVal);
     seg.style.opacity = String(opacity);
-    if (litColor && opacity >= 1) {
+    if (litColor && eased >= 1) {
       seg.style.color = litColor;
     } else if (dimColor) {
       seg.style.color = dimColor;
@@ -124,23 +163,23 @@ export function attachTextRevealScroll(textEl, options = {}) {
   const updateReveal = () => {
     const rect = textEl.getBoundingClientRect();
     const vh = window.innerHeight;
-    const textCenter = rect.top + rect.height / 2;
+    const startLine = vh * (startOffsetVal / 100);
+    const endLine = vh * (endOffsetVal / 100);
+    const span = startLine - endLine;
 
-    // Center-based progress: completes while quote is on screen (not after scrolling past)
-    const startCenter = vh * (startOffsetVal / 100);
-    const endCenter = vh * (endOffsetVal / 100);
-    const centerSpan = startCenter - endCenter;
+    const anchor =
+      progressBy === 'top' ? rect.top : rect.top + rect.height / 2;
+
     let progress =
-      centerSpan > 0
-        ? (startCenter - textCenter) / centerSpan
-        : textCenter <= endCenter
-          ? 1
-          : 0;
+      span > 0 ? (startLine - anchor) / span : anchor <= endLine ? 1 : 0;
 
     progress = Math.min(Math.max(progress, 0), 1);
 
-    // Fully lit once the block has passed the reading zone
-    if (rect.bottom <= vh * 0.38 || rect.top <= vh * 0.22) {
+    // Optional: snap to fully lit once centered in the reading zone
+    if (
+      snapCompleteEarly &&
+      (rect.bottom <= vh * 0.38 || rect.top <= vh * 0.22)
+    ) {
       progress = 1;
     }
 
@@ -153,13 +192,9 @@ export function attachTextRevealScroll(textEl, options = {}) {
         applyLit(seg, 1);
       } else if (i === effectiveLit && progress < 0.995) {
         const frac = progress * total - effectiveLit;
-        const opacity = dimOpacityVal + frac * (1 - dimOpacityVal);
-        applyLit(seg, opacity);
-        if (litColor && dimColor && frac > 0) {
-          seg.style.color = dimColor;
-        }
+        applyLit(seg, frac);
       } else {
-        applyLit(seg, dimOpacityVal);
+        applyLit(seg, 0);
       }
     });
 

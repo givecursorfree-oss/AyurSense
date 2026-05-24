@@ -36,12 +36,14 @@ export function ClassicalQuoteReveal() {
     }
 
     const cleanup = attachTextRevealScroll(el, {
-      revealMode: 'words',
-      startOffset: 95,
-      endOffset: 50,
-      dimOpacity: 0.72,
-      dimColor: '#000000',
+      revealMode: 'chars',
+      progressBy: 'top',
+      startOffset: 100,
+      endOffset: 5,
+      dimOpacity: 0.2,
+      dimColor: '#e2e2e2',
       litColor: '#000000',
+      snapCompleteEarly: false,
       onProgress: (p) => {
         if (p >= 0.68) {
           setSigPhase((prev) => (prev === 'idle' ? 'start' : prev));

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MedicalDisclaimer } from '@/components/MedicalDisclaimer';
 import { copyReportMarkdown, printReport } from '@/lib/report-export';
+import { isMeaningfulLabel } from '@/lib/parse-clinical-report';
 import { MODEL_NAME, PRODUCT_NAME } from '@/data/brand-copy';
 
 const METRICS = [
@@ -132,16 +133,25 @@ export function ClinicalReport({ report, reportRef }) {
           <p className="mt-1 text-sm text-dark-stone">
             {report.herbs.length} herbs identified from symptom context
           </p>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {report.herbs.map((herb, i) => (
+          <div className="report-herb-grid mt-4">
+            {report.herbs.map((herb, i) => {
+              const showCanonical = isMeaningfulLabel(herb.canonical);
+
+              return (
               <article key={i} className="report-herb-card report-herb-card--rich">
                 <div className="report-herb-card__head">
                   <div className="min-w-0 flex-1">
-                    <p className="font-medium text-inkwell">{herb.name}</p>
-                    <p className="mt-0.5 font-data text-xs text-dark-stone">
-                      <span className="text-dark-stone">{herb.canonical}</span>
-                      {' · '}
-                      <span className="text-ember-orange">{herb.confidence}</span>
+                    <p className="report-herb-card__name">{herb.name}</p>
+                    <p className="report-herb-card__meta font-data">
+                      {showCanonical ? (
+                        <>
+                          <span className="text-dark-stone">{herb.canonical}</span>
+                          <span className="text-dark-stone/50" aria-hidden="true">
+                            {' · '}
+                          </span>
+                        </>
+                      ) : null}
+                      <span className="report-herb-card__confidence">{herb.confidence}</span>
                     </p>
                   </div>
                 </div>
@@ -151,7 +161,8 @@ export function ClinicalReport({ report, reportRef }) {
                   </p>
                 )}
               </article>
-            ))}
+            );
+            })}
           </div>
         </div>
 
@@ -213,11 +224,13 @@ export function ClinicalReport({ report, reportRef }) {
                   >
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <p className="text-sm font-medium text-inkwell">{inter.title}</p>
-                      <span
-                        className={`report-interaction__badge report-interaction__badge--${tone}`}
-                      >
-                        {inter.type}
-                      </span>
+                      {isMeaningfulLabel(inter.type) ? (
+                        <span
+                          className={`report-interaction__badge report-interaction__badge--${tone}`}
+                        >
+                          {inter.type}
+                        </span>
+                      ) : null}
                     </div>
                     {inter.confidence && (
                       <p className="report-interaction__meta font-data">
