@@ -1,7 +1,7 @@
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { prefersReducedMotion } from '@/lib/scroll-motion';
+import { prefersReducedMotion, shouldUseSmoothScroll } from '@/lib/scroll-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,37 +13,56 @@ let tickerRaf = null;
 
 const scrollListeners = new Set();
 
-function emitScroll() {
-  scrollListeners.forEach((fn) => fn());
+let scrollEmitRaf = 0;
+let nativeScrollBound = false;
+
+function scheduleEmitScroll() {
+  if (scrollEmitRaf) return;
+  scrollEmitRaf = requestAnimationFrame(() => {
+    scrollEmitRaf = 0;
+    scrollListeners.forEach((fn) => fn());
+  });
+}
+
+function onNativeScroll() {
+  scheduleEmitScroll();
 }
 
 /**
- * Initialize Lenis smooth scroll + GSAP ScrollTrigger sync.
+ * Initialize Lenis smooth scroll + GSAP ScrollTrigger sync (desktop only).
  * @returns {Lenis | null}
  */
 export function initLenis() {
   if (typeof window === 'undefined' || lenis) return lenis;
-  if (prefersReducedMotion()) return null;
+  if (!shouldUseSmoothScroll()) {
+    if (!nativeScrollBound) {
+      window.addEventListener('scroll', onNativeScroll, { passive: true });
+      window.addEventListener('resize', onNativeScroll, { passive: true });
+      nativeScrollBound = true;
+    }
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+    return null;
+  }
 
   lenis = new Lenis({
-    duration: 1.15,
+    duration: 1.05,
     easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)),
     smoothWheel: true,
     wheelMultiplier: 1,
-    touchMultiplier: 1.2,
+    touchMultiplier: 1,
+    syncTouch: false,
     autoRaf: false,
   });
 
   lenis.on('scroll', () => {
     ScrollTrigger.update();
-    emitScroll();
+    scheduleEmitScroll();
   });
 
   tickerRaf = (time) => {
     lenis?.raf(time * 1000);
   };
   gsap.ticker.add(tickerRaf);
-  gsap.ticker.lagSmoothing(0);
 
   document.documentElement.classList.add('lenis', 'lenis-smooth');
 
@@ -60,6 +79,15 @@ export function destroyLenis() {
   lenis?.destroy();
   lenis = null;
   scrollListeners.clear();
+  if (nativeScrollBound) {
+    window.removeEventListener('scroll', onNativeScroll);
+    window.removeEventListener('resize', onNativeScroll);
+    nativeScrollBound = false;
+  }
+  if (scrollEmitRaf) {
+    cancelAnimationFrame(scrollEmitRaf);
+    scrollEmitRaf = 0;
+  }
   document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-scrolling');
 }
 
@@ -71,15 +99,10 @@ export function getLenis() {
 export function onAppScroll(handler) {
   scrollListeners.add(handler);
   if (!lenis) {
-    window.addEventListener('scroll', handler, { passive: true });
-    window.addEventListener('resize', handler, { passive: true });
+    handler();
   }
   return () => {
     scrollListeners.delete(handler);
-    if (!lenis) {
-      window.removeEventListener('scroll', handler);
-      window.removeEventListener('resize', handler);
-    }
   };
 }
 
@@ -97,7 +120,7 @@ export function scrollToTarget(target, options = {}) {
       offset,
       immediate,
       lock: false,
-      duration: immediate ? 0 : 1.15,
+      duration: immediate ? 0 : 1.05,
     });
     return;
   }

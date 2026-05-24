@@ -32,9 +32,9 @@ function blendHexColors(from, to, amount) {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-function segmentStyle(dimOpacity, dimColor, litColor) {
+function segmentStyle(dimOpacity, dimColor) {
   const color = dimColor ? `color:${dimColor};` : '';
-  return `display:inline;opacity:${dimOpacity};will-change:opacity,color;${color}`;
+  return `display:inline;opacity:${dimOpacity};${color}`;
 }
 
 function wrapChars(el, dimOpacity, dimColor, litColor) {
@@ -48,7 +48,7 @@ function wrapChars(el, dimOpacity, dimColor, litColor) {
       for (const char of text) {
         const span = document.createElement('span');
         span.textContent = char;
-        span.style.cssText = segmentStyle(dimOpacity, dimColor);
+        span.style.cssText = segmentStyle(dimOpacity, dimColor, litColor);
         span.setAttribute('data-text-reveal-seg', '');
         if (litColor) span.dataset.litColor = litColor;
         spans.push(span);
@@ -159,6 +159,24 @@ export function attachTextRevealScroll(textEl, options = {}) {
   let startOffsetVal = startOffset;
   let endOffsetVal = endOffset;
   let dimOpacityVal = dimOpacity;
+  let lastEffectiveLit = -1;
+  let lastProgressKey = -1;
+
+  const paintSegment = (index, progress) => {
+    const total = segments.length;
+    const effectiveLit =
+      progress >= 0.995 ? total : Math.floor(progress * total);
+
+    if (index < effectiveLit) {
+      applyLit(segments[index], 1);
+      return;
+    }
+    if (index === effectiveLit && progress < 0.995) {
+      applyLit(segments[index], progress * total - effectiveLit);
+      return;
+    }
+    applyLit(segments[index], 0);
+  };
 
   const updateReveal = () => {
     const rect = textEl.getBoundingClientRect();
@@ -175,7 +193,6 @@ export function attachTextRevealScroll(textEl, options = {}) {
 
     progress = Math.min(Math.max(progress, 0), 1);
 
-    // Optional: snap to fully lit once centered in the reading zone
     if (
       snapCompleteEarly &&
       (rect.bottom <= vh * 0.38 || rect.top <= vh * 0.22)
@@ -186,17 +203,32 @@ export function attachTextRevealScroll(textEl, options = {}) {
     const total = segments.length;
     const effectiveLit =
       progress >= 0.995 ? total : Math.floor(progress * total);
+    const progressKey = Math.round(progress * 120);
 
-    segments.forEach((seg, i) => {
-      if (i < effectiveLit) {
-        applyLit(seg, 1);
-      } else if (i === effectiveLit && progress < 0.995) {
-        const frac = progress * total - effectiveLit;
-        applyLit(seg, frac);
-      } else {
-        applyLit(seg, 0);
+    if (
+      progressKey === lastProgressKey &&
+      effectiveLit === lastEffectiveLit
+    ) {
+      return;
+    }
+
+    if (lastEffectiveLit < 0) {
+      for (let i = 0; i < total; i += 1) {
+        paintSegment(i, progress);
       }
-    });
+    } else {
+      const from = Math.min(lastEffectiveLit, effectiveLit);
+      const to = Math.max(lastEffectiveLit, effectiveLit) + 1;
+      for (let i = from; i <= Math.min(to, total - 1); i += 1) {
+        paintSegment(i, progress);
+      }
+      if (effectiveLit < total) {
+        paintSegment(effectiveLit, progress);
+      }
+    }
+
+    lastEffectiveLit = effectiveLit;
+    lastProgressKey = progressKey;
 
     if (typeof onProgress === 'function') {
       onProgress(progress);

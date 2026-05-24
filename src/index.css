@@ -3002,9 +3002,28 @@
 
   /* ——— Responsive: mobile · tablet · desktop ——— */
   @media (max-width: 767px) {
+    html {
+      scroll-behavior: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
     html,
     body {
       overflow-x: clip;
+    }
+
+    .classical-quote__glow {
+      filter: blur(52px);
+      opacity: 0.32;
+    }
+
+    .path-track__line-fill {
+      transform: translateZ(0);
+    }
+
+    .path-row {
+      opacity: 1;
+      transform: none;
     }
 
     .page-container {

@@ -1,5 +1,6 @@
 import { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import { attachTextRevealScroll } from '@/lib/text-reveal-scroll';
+import { isMobileViewport } from '@/lib/scroll-motion';
 import { SignComponent } from '@/components/SignComponent';
 
 /** Charaka Samhita, Sūtrasthāna 11.35 (Tistraiṣaṇīya) */
@@ -36,7 +37,7 @@ export function ClassicalQuoteReveal() {
     }
 
     const cleanup = attachTextRevealScroll(el, {
-      revealMode: 'chars',
+      revealMode: isMobileViewport() ? 'words' : 'chars',
       progressBy: 'top',
       startOffset: 100,
       endOffset: 5,

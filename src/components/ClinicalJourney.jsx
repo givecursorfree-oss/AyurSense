@@ -3,7 +3,11 @@
  */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ST_SCRUB_SMOOTH, scheduleScrollRefresh } from '@/lib/scroll-motion';
+import {
+  isMobileViewport,
+  ST_SCRUB_SMOOTH,
+  scheduleScrollRefresh,
+} from '@/lib/scroll-motion';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { PrimaryCtaLink } from '@/components/PrimaryCtaLink';
 import { AYURVEDA_PATH_NODES } from '@/data/ayurveda-path-nodes';
@@ -110,6 +114,9 @@ export function ClinicalJourney() {
 
     let refreshTimer;
 
+    const mobile = isMobileViewport();
+    const lineScrub = mobile ? true : ST_SCRUB_SMOOTH;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         fill,
@@ -117,32 +124,36 @@ export function ClinicalJourney() {
         {
           scaleY: 1,
           ease: 'none',
+          force3D: true,
           scrollTrigger: {
             trigger: track,
             start: 'top 75%',
             end: 'bottom 25%',
-            scrub: ST_SCRUB_SMOOTH,
+            scrub: lineScrub,
+            invalidateOnRefresh: true,
           },
         }
       );
 
-      gsap.utils.toArray('.path-row').forEach((row) => {
-        gsap.fromTo(
-          row,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: row,
-              start: 'top 88%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+      if (!mobile) {
+        gsap.utils.toArray('.path-row').forEach((row) => {
+          gsap.fromTo(
+            row,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+      }
 
       scheduleScrollRefresh();
       refreshTimer = window.setTimeout(() => scheduleScrollRefresh(), 400);
