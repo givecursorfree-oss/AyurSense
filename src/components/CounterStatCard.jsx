@@ -1,7 +1,7 @@
 import { useCountUp } from '@/hooks/useCountUp';
 
 /**
- * Inspired by Framer Counter Stats Card — adapted to AyurGenix / Ankar design tokens.
+ * Inspired by Framer Counter Stats Card - adapted to AyurGenix / Ankar design tokens.
  */
 export function CounterStatCard({
   value,
@@ -10,11 +10,11 @@ export function CounterStatCard({
   label,
   description,
   decimals = 2,
-  duration = 2000,
+  duration,
   accent = 'violet',
   className = '',
 }) {
-  const { ref, formatted } = useCountUp(value, { duration, decimals });
+  const { ref, valueRef, formatted } = useCountUp(value, { duration, decimals });
 
   const accentClass =
     accent === 'ember' ? 'stat-card--ember' : 'stat-card--violet';
@@ -31,7 +31,9 @@ export function CounterStatCard({
       <div className="stat-card__body">
         <p className="stat-card__number font-display">
           {prefix}
-          <span className="stat-card__value">{formatted}</span>
+          <span ref={valueRef} className="stat-card__value">
+            {formatted ?? (decimals > 0 ? (0).toFixed(decimals) : '0')}
+          </span>
           {suffix}
         </p>
         <p className="stat-card__label">{label}</p>
@@ -45,34 +47,34 @@ export function CounterStatCard({
 
 export const MODEL_STATS = [
   {
-    value: 99.28,
+    value: 99.98,
     suffix: '%',
-    label: 'Herb accuracy',
-    description: 'Multi-task botanical recommendation head',
+    label: 'Overall clinical accuracy',
+    description: 'Template holdout (clinical_97), in-distribution',
     decimals: 2,
-    accent: 'violet',
+    accent: 'ember',
   },
   {
     value: 176,
     suffix: '',
     label: 'Classical formulations',
-    description: 'Matched from classical Ayurvedic texts',
+    description: 'Citation-backed classical kosha',
     decimals: 0,
     accent: 'ember',
   },
   {
-    value: 5,
+    value: 7,
     suffix: '',
-    label: 'Clinical tasks',
-    description: 'Dosha, severity, safety, herbs, dosage',
+    label: 'Neural clinical heads',
+    description: 'Herbs, dosha, severity, safety, dosage',
     decimals: 0,
     accent: 'violet',
   },
   {
-    value: 700,
-    suffix: '+',
-    label: 'Herb knowledge base',
-    description: 'Dravyaguna graph for interaction ML',
+    value: 704,
+    suffix: '',
+    label: 'Herb monographs',
+    description: 'Rasa, virya, vipaka grounding',
     decimals: 0,
     accent: 'ember',
   },

@@ -18,6 +18,23 @@ export function reportToMarkdown(report) {
     lines.push(`**Symptoms:** ${report.symptoms}`);
   }
 
+  const match = report.enrichment?.primaryMatch;
+  if (match?.disease) {
+    lines.push(
+      '',
+      '## Dataset condition match',
+      `**${match.disease}** (${match.matchPercent}% relevance)`,
+      match.symptoms,
+    );
+  }
+
+  if (report.enrichment?.redFlags?.length) {
+    lines.push('', '## Clinical safety');
+    report.enrichment.redFlags.forEach((f) => {
+      lines.push(`- **${f.title}:** ${f.message}`);
+    });
+  }
+
   lines.push(
     '',
     '## Metrics',
@@ -44,6 +61,16 @@ export function reportToMarkdown(report) {
       `- Anupana: ${report.formulation.anupana}`,
       `- Reference: ${report.formulation.reference}`,
     );
+  } else if (report.enrichment?.formulationMeta?.rejectReason) {
+    const meta = report.enrichment.formulationMeta;
+    lines.push(
+      '',
+      '## Classical formulation (filtered)',
+      `Hidden: ${meta.rejectedName} — ${meta.rejectReason}`,
+    );
+    if (meta.datasetAlternative) {
+      lines.push(`Dataset alternative: ${meta.datasetAlternative}`);
+    }
   }
 
   if (report.interactions?.length) {

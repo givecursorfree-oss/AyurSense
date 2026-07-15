@@ -45,10 +45,10 @@ export function initLenis() {
   }
 
   lenis = new Lenis({
-    duration: 1.05,
+    duration: 0.85,
     easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)),
     smoothWheel: true,
-    wheelMultiplier: 1,
+    wheelMultiplier: 0.9,
     touchMultiplier: 1,
     syncTouch: false,
     autoRaf: false,

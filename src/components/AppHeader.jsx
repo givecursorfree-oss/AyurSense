@@ -57,7 +57,7 @@ export function AppHeader({ showReportLink = false, activeSection = '' }) {
             variant="simple"
             className="app-nav__cta app-nav__cta--desktop shrink-0"
           >
-            {onIntake ? 'Continue analysis' : 'Start clinical analysis'}
+            {onIntake ? 'Continue analysis' : 'Start patient intake'}
           </PrimaryCtaLink>
           <MobileNav activeSection={activeSection} />
         </div>

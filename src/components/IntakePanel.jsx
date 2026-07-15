@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { MedicalDisclaimer } from '@/components/MedicalDisclaimer';
-import { MODEL_NAME, PRODUCT_NAME } from '@/data/brand-copy';
+import {
+  MEDICATION_HINT,
+  MODEL_NAME,
+  PRODUCT_NAME,
+} from '@/data/brand-copy';
 import {
   IconAlert,
   IconCalendar,
@@ -14,6 +18,7 @@ import {
 
 const SEASONS = ['Summer', 'Monsoon', 'Winter', 'Spring', 'Autumn'];
 const GENDERS = ['Male', 'Female', 'Other'];
+const INTERNAL_EXTERNAL = ['Internal', 'External', 'None'];
 
 export function IntakePanel({
   symptoms,
@@ -24,6 +29,10 @@ export function IntakePanel({
   setAge,
   gender,
   setGender,
+  internalExternal,
+  setInternalExternal,
+  medications,
+  setMedications,
   loading,
   error,
   onSubmit,
@@ -35,6 +44,10 @@ export function IntakePanel({
   const goNext = () => {
     if (!symptoms.trim()) {
       setSymptomsError('Describe at least one symptom to continue.');
+      return;
+    }
+    if (symptoms.trim().length < 12) {
+      setSymptomsError('Add a bit more detail (at least a short clinical phrase).');
       return;
     }
     setSymptomsError('');
@@ -55,15 +68,17 @@ export function IntakePanel({
       <div className="intake-panel__shell">
         <header className="intake-panel__header">
           <div className="intake-panel__header-main">
-            <span className="intake-panel__step font-data">01</span>
+            <span className="intake-panel__step font-data">
+              {loading ? '…' : step === 1 ? '01' : '02'}
+            </span>
             <div className="intake-panel__header-copy min-w-0 flex-1">
               <p className="text-label mb-2">Patient intake</p>
               <h2 className="font-display text-2xl font-light tracking-tight text-inkwell md:text-3xl">
                 Clinical <span className="text-dark-stone">analysis</span>
               </h2>
               <p className="intake-panel__lede mt-2 max-w-md text-body-copy text-dark-stone">
-                {PRODUCT_NAME} runs {MODEL_NAME} — dosha, severity, herb,
-                interaction, and dosage inference in one pass.
+                {PRODUCT_NAME} runs {MODEL_NAME}: dosha, herbs, formulation
+                match, interactions, and dosage in one pass.
               </p>
             </div>
           </div>
@@ -71,18 +86,37 @@ export function IntakePanel({
 
         <ol className="intake-stepper" aria-label="Intake progress">
           <li
-            className={step === 1 ? 'intake-stepper__item--active' : step > 1 ? 'intake-stepper__item--done' : ''}
-            aria-current={step === 1 ? 'step' : undefined}
+            className={
+              step === 1 && !loading
+                ? 'intake-stepper__item--active'
+                : step > 1 || loading
+                  ? 'intake-stepper__item--done'
+                  : ''
+            }
+            aria-current={step === 1 && !loading ? 'step' : undefined}
           >
             <span className="intake-stepper__dot" aria-hidden="true" />
-            Symptoms
+            1. Symptoms
           </li>
           <li
-            className={step === 2 ? 'intake-stepper__item--active' : ''}
-            aria-current={step === 2 ? 'step' : undefined}
+            className={
+              step === 2 && !loading
+                ? 'intake-stepper__item--active'
+                : loading
+                  ? 'intake-stepper__item--done'
+                  : ''
+            }
+            aria-current={step === 2 && !loading ? 'step' : undefined}
           >
             <span className="intake-stepper__dot" aria-hidden="true" />
-            Context &amp; submit
+            2. Context
+          </li>
+          <li
+            className={loading ? 'intake-stepper__item--active' : ''}
+            aria-current={loading ? 'step' : undefined}
+          >
+            <span className="intake-stepper__dot" aria-hidden="true" />
+            3. Analyzing
           </li>
         </ol>
 
@@ -97,6 +131,10 @@ export function IntakePanel({
                   {charCount > 0 ? `${charCount} chars` : 'Required'}
                 </span>
               </div>
+              <p id="symptoms-hint" className="intake-field-hint mb-2">
+                Focus on presenting complaints. More clinical detail improves
+                matching.
+              </p>
               <div className="intake-textarea-wrap">
                 <Textarea
                   id="symptoms"
@@ -107,10 +145,12 @@ export function IntakePanel({
                       setSymptomsError('');
                     }
                   }}
-                  placeholder="Describe presenting symptoms in detail — e.g. joint stiffness in cold weather, dry cough, digestive heat after meals…"
+                  placeholder="e.g. joint stiffness in cold weather, dry cough, digestive heat after meals…"
                   className="intake-textarea min-h-[140px] border-0 bg-transparent shadow-none"
                   aria-invalid={symptomsError ? true : undefined}
-                  aria-describedby={symptomsError ? 'symptoms-error' : undefined}
+                  aria-describedby={
+                    symptomsError ? 'symptoms-hint symptoms-error' : 'symptoms-hint'
+                  }
                   required
                 />
               </div>
@@ -196,6 +236,58 @@ export function IntakePanel({
                     ))}
                   </select>
                 </div>
+
+                <div className="intake-field">
+                  <span
+                    className="intake-field__label text-label"
+                    id="internal-external-label"
+                  >
+                    Internal / External
+                    <span className="intake-optional"> Optional</span>
+                  </span>
+                  <div
+                    className="mt-2 flex flex-wrap gap-3"
+                    role="group"
+                    aria-labelledby="internal-external-label"
+                  >
+                    {INTERNAL_EXTERNAL.map((opt) => (
+                      <label
+                        key={opt}
+                        className="inline-flex min-h-11 items-center gap-2 text-sm text-dark-stone"
+                      >
+                        <input
+                          type="radio"
+                          name="internalExternal"
+                          value={opt}
+                          checked={internalExternal === opt}
+                          onChange={() => setInternalExternal(opt)}
+                          disabled={loading}
+                        />
+                        <span className="font-data">{opt}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="intake-field intake-field--full">
+                  <label htmlFor="medications" className="intake-field__label text-label">
+                    Current medications
+                    <span className="intake-optional"> Optional</span>
+                  </label>
+                  <p id="medications-hint" className="intake-field-hint mb-2">
+                    {MEDICATION_HINT}
+                  </p>
+                  <input
+                    id="medications"
+                    type="text"
+                    value={medications}
+                    onChange={(e) => setMedications(e.target.value)}
+                    className="intake-input"
+                    placeholder="e.g. metformin, warfarin"
+                    disabled={loading}
+                    aria-describedby="medications-hint"
+                  />
+                </div>
               </fieldset>
             </>
           )}
@@ -229,7 +321,7 @@ export function IntakePanel({
               {loading ? (
                 <>
                   <IconSpinner size={18} />
-                  Running {PRODUCT_NAME} inference…
+                  Analyzing with {MODEL_NAME}…
                 </>
               ) : step === 1 ? (
                 <>

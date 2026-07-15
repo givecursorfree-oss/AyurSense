@@ -1,0 +1,271 @@
+{
+  "foodAliases": [
+    {
+      "name": "licorice",
+      "canonical": "yashtimadhu",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "mulethi",
+      "canonical": "yashtimadhu",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "amla",
+      "canonical": "amalaki",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "ginger",
+      "canonical": "shunthi",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "dry ginger",
+      "canonical": "shunthi",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "fresh ginger",
+      "canonical": "ardraka",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "haritaki",
+      "canonical": "haritaki",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "amalaki",
+      "canonical": "tamalaki",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "jeeraka",
+      "canonical": "jeeraka",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "tamra bhasma",
+      "canonical": "tamra bhasma",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "ghrita",
+      "canonical": "ghrita",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "madhuka",
+      "canonical": "madhuka",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "draksha",
+      "canonical": "draksha",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "madhu",
+      "canonical": "madhu",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "dadima",
+      "canonical": "dadima",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "kushmanda (ash gourd)",
+      "canonical": "kushmanda",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "dadima (pomegranate)",
+      "canonical": "dadima",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "draksha (grapes)",
+      "canonical": "draksha",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "pathya (haritaki)",
+      "canonical": "haritaki",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "kushmanda",
+      "canonical": "kushmanda",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "narikela (coconut)",
+      "canonical": "ela",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "dadhi",
+      "canonical": "dadhi",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "ksheera",
+      "canonical": "ksheera",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "abhaya (haritaki)",
+      "canonical": "haritaki",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "jambu",
+      "canonical": "jambu",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "amra",
+      "canonical": "amra",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "yava",
+      "canonical": "yava",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "ksheera (milk)",
+      "canonical": "ksheera",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "tila taila",
+      "canonical": "tila taila",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "madhucchishta (beeswax)",
+      "canonical": "madhu",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "masha (black gram)",
+      "canonical": "masha",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "jeeraka (cumin)",
+      "canonical": "jeeraka",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "madhusnuhi (chopchini)",
+      "canonical": "chopchini",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "yavakshara",
+      "canonical": "yavakshara",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    },
+    {
+      "name": "tamra (copper)",
+      "canonical": "amra",
+      "source": "AyurGenix Kosha — herb/ahara alias index"
+    }
+  ],
+  "formulationDietHints": [
+    {
+      "name": "Trikatu Churna",
+      "note": "Honey or warm water.",
+      "reference": "Sharngadhara Samhita, Madhyama Khanda 6",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Sitopaladi Churna",
+      "note": "Madhu (Honey) & Ghrita (Ghee).",
+      "reference": "Sharngadhara Samhita, Madhyama Khanda 6",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Hingvashtak Churna",
+      "note": "Warm water or first morsel of food with ghee.",
+      "reference": "Bhaishajya Ratnavali, Agnimandya Rogadhikara",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Avipattikar Churna",
+      "note": "Cold water or coconut water.",
+      "reference": "Bhaishajya Ratnavali, Amlapitta Rogadhikara",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Sanjivani Vati",
+      "note": "Ginger juice or warm water.",
+      "reference": "Sharngadhara Samhita, Madhyama Khanda 7",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Triphala Guggulu",
+      "note": "Warm water.",
+      "reference": "Sharngadhara Samhita, Madhyama Khanda 7",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Mahanarayana Taila",
+      "note": "N/A",
+      "reference": "Bhaishajya Ratnavali, Vatavyadhi Rogadhikara",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Dashamularishta",
+      "note": "With an equal quantity of water after meals.",
+      "reference": "Bhaishajya Ratnavali",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Mahamanjisthadi Kwath",
+      "note": "With water before food.",
+      "reference": "Sharngadhara Samhita, Madhyama Khanda 2",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Rasnairandadi Kwath",
+      "note": "With water before food.",
+      "reference": "Sahasrayogam",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Pravala Pishti",
+      "note": "Honey or ghee.",
+      "reference": "Ayurveda Sara Sangraha",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Kaishore Guggulu",
+      "note": "Warm water or Manjishthadi Kwath.",
+      "reference": "Sharngadhara Samhita, Madhyama Khanda 7",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Yogaraja Guggulu",
+      "note": "Warm water or Rasnadi Kwath.",
+      "reference": "Bhaishajya Ratnavali, Amavata Rogadhikara",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Simhanada Guggulu",
+      "note": "Warm water.",
+      "reference": "Bhaishajya Ratnavali, Amavata Rogadhikara",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    },
+    {
+      "name": "Kanchanara Guggulu",
+      "note": "Warm water.",
+      "reference": "Sharngadhara Samhita, Madhyama Khanda 7",
+      "source": "AyurGenix Kosha — Bhaishajya Kalpana / classical formulations"
+    }
+  ]
+}

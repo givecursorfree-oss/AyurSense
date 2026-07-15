@@ -1,7 +1,8 @@
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-/** Smooth scrub lag (seconds) — higher = smoother, less jitter */
-export const ST_SCRUB_SMOOTH = 0.75;
+/** Smooth scrub lag (seconds) - lower = snappier, less trailing lag */
+export const ST_SCRUB_SMOOTH = 0.35;
 
 let configured = false;
 
@@ -34,8 +35,8 @@ export function configureScrollMotion() {
     ignoreMobileResize: true,
   });
 
-  if (!shouldUseSmoothScroll() && ScrollTrigger.isTouch === 1) {
-    ScrollTrigger.normalizeScroll(true);
+  if (shouldUseSmoothScroll()) {
+    gsap.ticker.lagSmoothing(500, 33);
   }
 }
 
@@ -50,4 +51,3 @@ export function scheduleScrollRefresh() {
     ScrollTrigger.refresh();
   });
 }
-

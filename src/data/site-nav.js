@@ -3,16 +3,17 @@
 export const HOME_SCROLL_SECTIONS = [
   'how-it-works',
   'capabilities',
-  'classical-wisdom',
+  'knowledge',
   'performance',
+  'faq',
 ];
 
 export const PRIMARY_NAV = [
-  { label: 'Three steps', hash: 'how-it-works' },
+  { label: 'How it works', hash: 'how-it-works' },
   { label: 'Capabilities', hash: 'capabilities' },
   { label: 'Clinical journey', to: '/journey' },
-  { label: 'Classical wisdom', hash: 'classical-wisdom' },
-  { label: 'Model metrics', hash: 'performance' },
+  { label: 'Model', to: '/model' },
+  { label: 'FAQ', hash: 'faq' },
 ];
 
 export function primaryNavHref(item) {
@@ -27,18 +28,23 @@ export function isPrimaryNavActive(item, { pathname, activeSection }) {
 }
 
 export const FOOTER_PRODUCT_HOME = [
-  { label: 'Three steps', to: '/#how-it-works' },
+  { label: 'How it works', to: '/#how-it-works' },
   { label: 'Capabilities', to: '/#capabilities' },
   { label: 'Clinical journey', to: '/journey' },
   { label: 'Patient intake', to: '/intake' },
-  { label: 'Classical wisdom', to: '/#classical-wisdom' },
-  { label: 'Model metrics', to: '/#performance' },
+  { label: 'Model (V9.2)', to: '/model' },
+  { label: 'FAQ', to: '/#faq' },
 ];
 
 export const FOOTER_PRODUCT_INTAKE = [
   { label: 'Home', to: '/' },
-  { label: 'Three steps', to: '/#how-it-works' },
-  { label: 'Capabilities', to: '/#capabilities' },
+  { label: 'How it works', to: '/#how-it-works' },
   { label: 'Clinical journey', to: '/journey' },
   { label: 'Patient intake', to: '/intake' },
+  { label: 'Limitations', to: '/limitations' },
+];
+
+export const FOOTER_TRUST = [
+  { label: 'Limitations and ethics', to: '/limitations' },
+  { label: 'Model overview', to: '/model' },
 ];

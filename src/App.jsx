@@ -20,10 +20,21 @@ const PatientIntakePage = lazy(() =>
 const JourneyPage = lazy(() =>
   import('@/pages/JourneyPage').then((m) => ({ default: m.JourneyPage })),
 );
+
+const ModelPage = lazy(() =>
+  import('@/pages/ModelPage').then((m) => ({ default: m.ModelPage })),
+);
+
+const LimitationsPage = lazy(() =>
+  import('@/pages/LimitationsPage').then((m) => ({ default: m.LimitationsPage })),
+);
+
 import { configureScrollMotion } from '@/lib/scroll-motion';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { HOME_SCROLL_SECTIONS } from '@/data/site-nav';
 import './App.css';
+
+const PRELOADER_SESSION_KEY = 'ayursense-preloader-seen';
 
 function AppShell() {
   const location = useLocation();
@@ -68,7 +79,7 @@ function AppShell() {
       <AppHeader showReportLink={onIntake} activeSection={activeSection} />
       <Suspense
         fallback={
-          <main className="page-container py-24 text-center text-dark-stone">
+          <main className="page-container py-24 text-center text-dark-stone" aria-busy="true">
             Loading…
           </main>
         }
@@ -77,6 +88,8 @@ function AppShell() {
           <Route path="/" element={<HomePage />} />
           <Route path="/journey" element={<JourneyPage />} />
           <Route path="/intake" element={<PatientIntakePage />} />
+          <Route path="/model" element={<ModelPage />} />
+          <Route path="/limitations" element={<LimitationsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
@@ -84,8 +97,28 @@ function AppShell() {
   );
 }
 
+function shouldShowPreloader() {
+  if (typeof window === 'undefined') return false;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return false;
+  }
+  try {
+    return sessionStorage.getItem(PRELOADER_SESSION_KEY) !== '1';
+  } catch {
+    return true;
+  }
+}
+
+function markPreloaderSeen() {
+  try {
+    sessionStorage.setItem(PRELOADER_SESSION_KEY, '1');
+  } catch {
+    /* ignore */
+  }
+}
+
 function App() {
-  const [appReady, setAppReady] = useState(false);
+  const [appReady, setAppReady] = useState(() => !shouldShowPreloader());
 
   useEffect(() => {
     if (!appReady) return;
@@ -96,7 +129,12 @@ function App() {
 
   if (!appReady) {
     return (
-      <AstraPreloader onComplete={() => setAppReady(true)} />
+      <AstraPreloader
+        onComplete={() => {
+          markPreloaderSeen();
+          setAppReady(true);
+        }}
+      />
     );
   }
 

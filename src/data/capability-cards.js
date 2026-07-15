@@ -35,7 +35,7 @@ export const AYUR_CAPABILITY_CARDS = [
   {
     id: 'safety',
     title: 'DRUG SAFETY',
-    description: 'Pharmaceutical safety review and herb–herb interaction screening.',
+    description: 'Pharmaceutical safety review and herb-herb interaction screening.',
     thiingsSlug: 'pharmacy',
     icon: {
       src: thiingsIconUrl('6wMF08KL3k63lcTffQtNl21e7rnvlZ'),
@@ -59,9 +59,9 @@ export const AYUR_CLASSICAL_FORMULATION_CARD = {
   id: 'classical-formulation',
   badge: 'AyurGenix signature',
   title: 'CLASSICAL FORMULATION ALIGNMENT',
-  description:
-    'AyurGenix V9 suggests unique formulations grounded in Charaka Samhita, Bhaishajya Kalpana, and other classical Ayurvedic texts — not generic herb lists.',
-  highlights: ['Charaka Samhita', 'Bhaishajya Kalpana'],
+    description:
+    'AyurGenix V9.2 matches formulations grounded in Bhaishajya Ratnavali, Charaka Samhita, Sharngadhara Samhita, and other classical texts - not generic herb lists.',
+  highlights: ['Bhaishajya Ratnavali', 'Charaka Samhita'],
   thiingsSlug: 'potions-book',
   icon: {
     src: thiingsIconUrl('nJa8u8YodOrRhi7VeQkbYIzL6C6bsA'),

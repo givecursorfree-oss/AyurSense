@@ -8,7 +8,10 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "a11y": "npx @axe-core/cli http://localhost:4173/ http://localhost:4173/journey http://localhost:4173/intake --exit",
+    "dataset:guidance": "node scripts/build-dataset-guidance.mjs",
+    "dataset:symptoms": "node scripts/build-dataset-symptom-index.mjs",
+    "dataset:build": "npm run dataset:guidance && npm run dataset:symptoms",
+    "a11y": "npx @axe-core/cli http://localhost:4173/ http://localhost:4173/journey http://localhost:4173/intake http://localhost:4173/model http://localhost:4173/limitations --exit",
     "a11y:setup": "npx browser-driver-manager install chrome"
   },
   "dependencies": {
@@ -18,6 +21,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
     "gsap": "^3.15.0",
+    "jspdf": "^4.2.1",
     "lenis": "^1.3.23",
     "radix-ui": "^1.4.3",
     "react": "^19.2.6",

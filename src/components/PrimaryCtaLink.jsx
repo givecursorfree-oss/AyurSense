@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import { IconChevronRight } from '@/components/icons';
 import { DrawerCornerCta } from '@/components/DrawerCornerCta';
+import { CTA_PRIMARY } from '@/data/brand-copy';
 
 /**
  * Primary CTA — drawer-corner style by default; simple pill for compact nav slots.
  */
 export function PrimaryCtaLink({
   to = '/intake',
-  children = 'Start clinical analysis',
+  children = CTA_PRIMARY,
   className = '',
   variant = 'drawer',
-  drawerTop = 'Five analyses',
+  drawerTop = 'Seven analyses',
   drawerBottom = '...one intake',
   iconSize = 18,
   showIcon = true,

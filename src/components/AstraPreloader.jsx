@@ -19,9 +19,6 @@ const LETTER_STAGGER = 0.2;
 const HOLD_AFTER_REVEAL = 0.5;
 const INITIAL_ROTATE = 14;
 
-/** Clears legacy session flag from earlier builds (preloader now runs every visit). */
-const LEGACY_PRELOADER_STORAGE_KEY = 'ayursense-preloader-done';
-
 function getLargeFontSize() {
   return window.matchMedia('(max-width: 639px)').matches ? 95 : 215;
 }
@@ -50,12 +47,6 @@ export function AstraPreloader({ onComplete }) {
   }, [finish]);
 
   useLayoutEffect(() => {
-    try {
-      sessionStorage.removeItem(LEGACY_PRELOADER_STORAGE_KEY);
-    } catch {
-      /* ignore storage errors */
-    }
-
     const root = rootRef.current;
     if (!root) return undefined;
 

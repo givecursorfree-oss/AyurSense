@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { CTA_PRIMARY } from '@/data/brand-copy';
 
 const CORNER_PATH =
   'M32,32C14.355,32,0,17.645,0,0h.985c0,17.102,13.913,31.015,31.015,31.015v.985Z';
@@ -22,8 +23,8 @@ function CornerSvg() {
 export function DrawerCornerCta({
   to,
   href,
-  children = 'Start clinical analysis',
-  drawerTop = 'Five analyses',
+  children = CTA_PRIMARY,
+  drawerTop = 'Seven analyses',
   drawerBottom = '...one intake',
   className = '',
   ...rest

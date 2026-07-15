@@ -170,7 +170,7 @@ export function MobileNav({ activeSection = '' }) {
             showIcon
             onClick={closeMenu}
           >
-            {onIntake ? 'Continue analysis' : 'Start clinical analysis'}
+            {onIntake ? 'Continue analysis' : 'Start patient intake'}
           </PrimaryCtaLink>
         </nav>
       </div>

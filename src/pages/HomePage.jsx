@@ -1,30 +1,57 @@
 import { useLayoutEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { BrandName } from '@/components/BrandName';
-import { IconSpark } from '@/components/icons';
+import { IconChevronRight, IconSpark } from '@/components/icons';
 import { CounterStatCard, MODEL_STATS } from '@/components/CounterStatCard';
 import { HowItWorksSteps } from '@/components/HowItWorksSteps';
 import { CapabilityTeaser } from '@/components/CapabilityTeaser';
+import { PipelineOverview } from '@/components/PipelineOverview';
+import { KnowledgeSection } from '@/components/KnowledgeSection';
+import { LimitationsTeaser } from '@/components/LimitationsTeaser';
+import { HomeFaq } from '@/components/HomeFaq';
 import { ClassicalQuoteReveal } from '@/components/ClassicalQuoteReveal';
 import { SiteFooter } from '@/components/SiteFooter';
-import { scheduleScrollRefresh } from '@/lib/scroll-motion';
+import {
+  isMobileViewport,
+  prefersReducedMotion,
+  scheduleScrollRefresh,
+} from '@/lib/scroll-motion';
 import { PrimaryCtaLink } from '@/components/PrimaryCtaLink';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import {
+  CTA_SECONDARY,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  HERO_HEADLINE,
+  HERO_SUPPORT,
+} from '@/data/brand-copy';
 
 export function HomePage() {
   const containerRef = useRef(null);
 
+  usePageMeta({
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    path: '/',
+  });
+
   useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (prefersReducedMotion() || isMobileViewport()) {
       scheduleScrollRefresh();
       return undefined;
     }
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      tl.from('.app-nav', { y: -12, opacity: 0, duration: 0.5 })
-        .from('.hero-eyebrow', { y: 10, opacity: 0, duration: 0.4 }, '-=0.2')
-        .from('.hero-copy', { y: 20, opacity: 0, duration: 0.6 }, '-=0.25')
-        .from('.stat-card', { y: 24, opacity: 0, scale: 0.96, duration: 0.5, stagger: 0.08 }, '-=0.2')
+      tl.from('.app-nav', { y: -10, opacity: 0, duration: 0.4 })
+        .from('.hero-eyebrow', { y: 8, opacity: 0, duration: 0.35 }, '-=0.15')
+        .from('.hero-copy', { y: 16, opacity: 0, duration: 0.45 }, '-=0.2')
+        .from(
+          '.stat-card',
+          { y: 18, opacity: 0, duration: 0.4, stagger: 0.06 },
+          '-=0.2',
+        )
         .eventCallback('onComplete', () => scheduleScrollRefresh());
     }, containerRef);
 
@@ -33,7 +60,7 @@ export function HomePage() {
     let resizeTimer;
     const onResize = () => {
       window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => scheduleScrollRefresh(), 150);
+      resizeTimer = window.setTimeout(() => scheduleScrollRefresh(), 200);
     };
     window.addEventListener('resize', onResize, { passive: true });
 
@@ -47,30 +74,27 @@ export function HomePage() {
   return (
     <div className="page-layout font-ui" ref={containerRef}>
       <main id="main-content" className="site-main" tabIndex={-1}>
-        <section className="hero-atmosphere border-b border-light-steel pb-12 pt-10 sm:pb-16 sm:pt-12 md:pb-20 md:pt-16">
-          <div className="hero-gradient hero-gradient--violet" aria-hidden="true" />
-          <div className="hero-gradient hero-gradient--ember" aria-hidden="true" />
+        <section className="hero-atmosphere hero-atmosphere--compact border-b border-light-steel">
           <div className="hero-gradient hero-gradient--center" aria-hidden="true" />
 
-          <div className="hero-content page-container grid gap-10 sm:gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
+          <div className="hero-content page-container hero-content--split">
             <div className="hero-copy min-w-0 text-left">
-              <p className="hero-eyebrow text-label mb-4 inline-flex items-center gap-2 rounded-full border border-light-steel bg-canvas/80 px-3 py-1.5 backdrop-blur-sm sm:mb-5">
+              <p className="hero-eyebrow text-label inline-flex items-center gap-2 border border-light-steel bg-canvas/90 px-3 py-1.5">
                 <IconSpark size={14} className="shrink-0 text-ember-orange" />
-                Ayurvedic clinical intelligence
+                Clinical decision support
               </p>
-              <h1 className="font-display text-[1.875rem] font-light leading-[1.08] tracking-tight text-inkwell sm:text-[2.25rem] md:text-5xl">
-                <BrandName size="lg" className="block mb-2 sm:mb-3" />
-                <span className="text-dark-stone mt-1 block text-[0.7em] font-normal sm:text-[0.65em] md:text-[0.55em]">
-                  Predictive medicine, one intake
-                </span>
+              <h1 className="mt-0">
+                <span className="sr-only">AyurSense - </span>
+                <BrandName size="lg" className="block" />
+                <span className="type-hero-sub mt-4 block pb-1">{HERO_HEADLINE}</span>
               </h1>
-              <p className="mt-4 max-w-md text-body-copy text-dark-stone sm:mt-5">
-                AyurSense runs AyurGenix V9 — multi-task inference, classical
-                formulation alignment, and herb–herb screening via IndicBERTv2 +
-                LoRA.
-              </p>
-              <div className="btn-row hero-actions mt-6 sm:mt-8">
+              <p className="section-lede">{HERO_SUPPORT}</p>
+              <div className="btn-row hero-actions flex flex-wrap items-center">
                 <PrimaryCtaLink />
+                <Link to="/#how-it-works" className="btn-secondary">
+                  {CTA_SECONDARY}
+                  <IconChevronRight size={16} className="btn-icon" aria-hidden />
+                </Link>
               </div>
             </div>
 
@@ -86,11 +110,12 @@ export function HomePage() {
         </section>
 
         <HowItWorksSteps />
-
+        <PipelineOverview />
         <CapabilityTeaser />
-
+        <KnowledgeSection />
+        <LimitationsTeaser />
+        <HomeFaq />
         <ClassicalQuoteReveal />
-
         <SiteFooter />
       </main>
     </div>
