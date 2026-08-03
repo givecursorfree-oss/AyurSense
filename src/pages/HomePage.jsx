@@ -6,7 +6,6 @@ import { IconChevronRight, IconSpark } from '@/components/icons';
 import { HowItWorksSteps } from '@/components/HowItWorksSteps';
 import { CapabilityTeaser } from '@/components/CapabilityTeaser';
 import { PipelineOverview } from '@/components/PipelineOverview';
-import { KnowledgeSection } from '@/components/KnowledgeSection';
 import { LimitationsTeaser } from '@/components/LimitationsTeaser';
 import { HomeFaq } from '@/components/HomeFaq';
 import { ClassicalQuoteReveal } from '@/components/ClassicalQuoteReveal';
@@ -46,11 +45,6 @@ export function HomePage() {
       tl.from('.app-nav', { y: -10, opacity: 0, duration: 0.4 })
         .from('.hero-eyebrow', { y: 8, opacity: 0, duration: 0.35 }, '-=0.15')
         .from('.hero-copy', { y: 16, opacity: 0, duration: 0.45 }, '-=0.2')
-        .from(
-          '.stat-card',
-          { y: 18, opacity: 0, duration: 0.4, stagger: 0.06 },
-          '-=0.2',
-        )
         .eventCallback('onComplete', () => scheduleScrollRefresh());
     }, containerRef);
 
@@ -102,7 +96,6 @@ export function HomePage() {
         <HowItWorksSteps />
         <PipelineOverview />
         <CapabilityTeaser />
-        <KnowledgeSection />
         <LimitationsTeaser />
         <HomeFaq />
         <ClassicalQuoteReveal />
