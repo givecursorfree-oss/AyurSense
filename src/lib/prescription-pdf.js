@@ -3,7 +3,7 @@
  * Layout inspired by professional diagnostic report templates.
  */
 
-import { MEDICAL_DISCLAIMER, MODEL_NAME, PRODUCT_NAME } from '@/data/brand-copy';
+import { MEDICAL_DISCLAIMER, PRODUCT_NAME } from '@/data/brand-copy';
 import { getSymptomAwareTreatmentGuidance } from '@/data/dataset-v2-guidance';
 import {
   filterDisplayFoods,
@@ -78,7 +78,7 @@ function drawPageFooter(doc, pageNum, pageCount, marginX, pageWidth) {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   setColor(doc, COLORS.inkMuted);
-  const footerMid = `${MODEL_NAME} Clinical Release · Educational use only`;
+  const footerMid = `${PRODUCT_NAME} · Educational use only`;
   doc.text(footerMid, pageWidth / 2, y, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
@@ -353,7 +353,7 @@ export async function downloadAyurvedicPrescriptionPdf({
     marginX,
     pageWidth,
     reportId,
-    `${PRODUCT_NAME} · ${MODEL_NAME} — Intelligent Ayurvedic Clinical Analysis`,
+    `${PRODUCT_NAME} — Intelligent Ayurvedic Clinical Analysis`,
   );
 
   y = drawMetaGrid(doc, marginX, y, contentW, [

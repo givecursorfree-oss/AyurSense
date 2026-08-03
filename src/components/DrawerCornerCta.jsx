@@ -24,7 +24,7 @@ export function DrawerCornerCta({
   to,
   href,
   children = CTA_PRIMARY,
-  drawerTop = 'Seven analyses',
+  drawerTop = 'Clinical analysis',
   drawerBottom = '...one intake',
   className = '',
   ...rest

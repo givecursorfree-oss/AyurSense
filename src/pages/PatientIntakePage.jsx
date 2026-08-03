@@ -10,7 +10,7 @@ import { SiteFooter } from '@/components/SiteFooter';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { scrollToTarget } from '@/lib/lenis-scroll';
 import { scheduleScrollRefresh } from '@/lib/scroll-motion';
-import { MODEL_NAME, PRODUCT_NAME } from '@/data/brand-copy';
+import { PRODUCT_NAME } from '@/data/brand-copy';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 export function PatientIntakePage() {
@@ -30,7 +30,7 @@ export function PatientIntakePage() {
 
   usePageMeta({
     title: 'Patient intake',
-    description: `Run ${PRODUCT_NAME} clinical analysis with ${MODEL_NAME}: enter symptoms and review dosha, herbs, cited formulations, and safety flags.`,
+    description: `Run ${PRODUCT_NAME} clinical analysis: enter symptoms and review dosha, herbs, cited formulations, and safety flags.`,
     path: '/intake',
   });
 
@@ -170,7 +170,7 @@ export function PatientIntakePage() {
               ]}
             />
             <p className="intake-page__kicker text-label mt-5">
-              {PRODUCT_NAME} · {MODEL_NAME}
+              {PRODUCT_NAME} · Clinical analysis
             </p>
           </div>
 

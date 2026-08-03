@@ -30,7 +30,7 @@ export const FOOTER_PRODUCT_HOME = [
   { label: 'Capabilities', to: '/#capabilities' },
   { label: 'Clinical journey', to: '/journey' },
   { label: 'Patient intake', to: '/intake' },
-  { label: 'Model (V9.2)', to: '/model' },
+  { label: 'Model overview', to: '/model' },
   { label: 'FAQ', to: '/#faq' },
 ];
 

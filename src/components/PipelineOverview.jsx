@@ -17,8 +17,8 @@ export function PipelineOverview() {
               <span className="section-heading__muted">reviewable report</span>
             </h2>
             <p className="section-lede">
-              From intake text through neural heads, classical matching, and
-              safety screening.
+              From intake text through clinical analysis, formulation matching,
+              and safety screening.
             </p>
           </div>
           <Link to="/model" className="btn-secondary shrink-0 self-start sm:self-auto">

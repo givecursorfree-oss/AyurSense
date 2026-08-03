@@ -227,8 +227,8 @@ export function ClinicalJourney() {
                     analysis
                   </h3>
                   <p className="path-terminus__hint text-body-copy">
-                    Enter symptoms, season, age, and gender. AyurSense via AyurGenix V9
-                    returns dosha, herbs, classical formulation alignment, and interaction
+                    Enter symptoms, season, age, and gender. AyurSense returns
+                    dosha, herbs, formulation alignment, and interaction
                     screening in one pass.
                   </p>
                   <PrimaryCtaLink className="path-terminus__cta w-full sm:w-auto" />

@@ -6,7 +6,6 @@ import { downloadAyurvedicPrescriptionPdf } from '@/lib/prescription-pdf';
 import { isMeaningfulLabel } from '@/lib/parse-clinical-report';
 import {
   SCOPE_CAVEAT,
-  MODEL_NAME,
   PRODUCT_NAME,
 } from '@/data/brand-copy';
 import { DietPlan } from '@/components/DietPlan';
@@ -143,8 +142,8 @@ export function ClinicalReport({ report, reportRef }) {
               Clinical <span className="text-dark-stone">report</span>
             </h2>
             <p className="mt-2 text-body-sm max-w-[40rem]">
-              {PRODUCT_NAME} · {MODEL_NAME}. Neural inference, citation-backed
-              formulations, herb-herb safety screening.
+              {PRODUCT_NAME}. Citation-backed suggestions and safety flags for
+              practitioner review.
             </p>
             <div className="report-export-actions mt-4 flex flex-wrap gap-2">
               <button type="button" className="btn-secondary btn-secondary--sm" onClick={handleCopy}>

@@ -49,7 +49,7 @@ function ClassicalFormulationCard({ card }) {
           <p className="capability-card__description capability-card__description--featured">
             {card.description}
           </p>
-          <ul className="capability-card__highlights" aria-label="Classical text sources">
+          <ul className="capability-card__highlights" aria-label="Formulation highlights">
             {card.highlights.map((label) => (
               <li key={label}>
                 <span className="capability-card__highlight">{label}</span>

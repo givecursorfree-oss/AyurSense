@@ -12,7 +12,7 @@ export function LimitationsTeaser() {
       <div className="page-container">
         <p className="text-label mb-3">Trust</p>
         <h2 id="trust-heading" className="section-heading">
-          Clear about what V9.2{' '}
+          Clear about what AyurSense{' '}
           <span className="section-heading__muted">does not claim</span>
         </h2>
         <p className="section-lede">{SCOPE_CAVEAT}</p>

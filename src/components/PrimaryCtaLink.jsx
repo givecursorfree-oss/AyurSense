@@ -11,7 +11,7 @@ export function PrimaryCtaLink({
   children = CTA_PRIMARY,
   className = '',
   variant = 'drawer',
-  drawerTop = 'Seven analyses',
+  drawerTop = 'Clinical analysis',
   drawerBottom = '...one intake',
   iconSize = 18,
   showIcon = true,

@@ -7,7 +7,7 @@ export const SITE_URL = 'https://ayursense.vercel.app';
 
 export const DEFAULT_TITLE = 'AyurSense - Ayurvedic Clinical Decision Support';
 export const DEFAULT_DESCRIPTION =
-  'Clinical decision support for Ayurveda: symptoms to dosha, herbs, cited classical formulations, and safety flags. Powered by AyurGenix V9.2.';
+  'Clinical decision support for Ayurveda: symptoms to dosha, herbs, cited formulations, and safety flags for practitioner review.';
 
 export const MEDICAL_DISCLAIMER =
   'For research and educational clinical decision support only. Not a substitute for diagnosis, treatment, or advice from a licensed physician or qualified Ayurvedic practitioner.';
@@ -17,7 +17,7 @@ export const SCOPE_CAVEAT =
 
 export const HERO_HEADLINE = 'From symptoms to a citation-backed clinical report';
 export const HERO_SUPPORT =
-  'Structured intake. AyurGenix V9.2 returns dosha, herbs, cited formulations, and safety flags for practitioner review.';
+  'Structured intake. AyurSense returns dosha, herbs, cited formulations, and safety flags for practitioner review.';
 
 export const CTA_PRIMARY = 'Start patient intake';
 export const CTA_SECONDARY = 'See how it works';
@@ -30,18 +30,18 @@ export const PIPELINE_STEPS = [
   },
   {
     step: '02',
-    title: 'Neural inference',
-    body: 'Multi-task heads for herbs, dosha, severity, conflict, toxicity, side-effects, and dosage.',
+    title: 'Clinical analysis',
+    body: 'Dosha, herbs, severity, safety, and dosage guidance from the intake.',
   },
   {
     step: '03',
     title: 'Formulation match',
-    body: 'Symbolic matcher scores classical formulas with grantha references.',
+    body: 'Classical formulas scored against the case for practitioner review.',
   },
   {
     step: '04',
     title: 'Interaction screen',
-    body: 'Classical pairs first, then a learned fallback: Synergistic, Caution, or Contraindicated.',
+    body: 'Herb interaction flags: Synergistic, Caution, or Contraindicated.',
   },
   {
     step: '05',
@@ -53,11 +53,11 @@ export const PIPELINE_STEPS = [
 export const LIMITATIONS_SHORT = [
   {
     title: 'Not full drug-drug checking',
-    body: 'Drug-herb conflict uses a focused medication keyword list, not RxNorm/DrugBank DDI.',
+    body: 'Medication screening uses a focused keyword list, not a full pharmacy DDI database.',
   },
   {
-    title: 'Formulation match is symbolic',
-    body: 'Formulas are scored by symptom and herb overlap, not end-to-end learned retrieval.',
+    title: 'Formulation match is assistive',
+    body: 'Matched formulas are ranked suggestions for review, not automatic prescriptions.',
   },
   {
     title: 'Case wording matters',
@@ -65,7 +65,7 @@ export const LIMITATIONS_SHORT = [
   },
   {
     title: 'Educational CDS only',
-    body: 'Requires qualified practitioner review. Dosage is model-estimated, not a prescription.',
+    body: 'Requires qualified practitioner review. Dosage is estimated, not a prescription.',
   },
 ];
 
@@ -80,15 +80,11 @@ export const HOME_FAQ = [
   },
   {
     q: 'What does a classical citation mean?',
-    a: 'When a formulation is matched, AyurSense shows the classical text reference embedded in the V9.2 knowledge bundle.',
+    a: 'When a formulation is matched, AyurSense shows the classical reference associated with that suggestion for practitioner review.',
   },
   {
     q: 'Why mention medications?',
-    a: 'Optional current medications help the drug-herb conflict head flag overlaps with high-risk herbs (for example anticoagulants or insulin with certain botanicals).',
-  },
-  {
-    q: 'What runs under the hood?',
-    a: 'AyurGenix V9.2 combines neural multi-task inference with a classical knowledge kosha for formulation matching and safety screening in one production workflow.',
+    a: 'Optional current medications help flag possible herb overlaps with high-risk drug classes for practitioner review.',
   },
 ];
 

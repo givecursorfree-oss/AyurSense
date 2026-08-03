@@ -5,7 +5,6 @@ import { BrandName } from '@/components/BrandName';
 import { IconChevronRight, IconSpark } from '@/components/icons';
 import { HowItWorksSteps } from '@/components/HowItWorksSteps';
 import { CapabilityTeaser } from '@/components/CapabilityTeaser';
-import { PipelineOverview } from '@/components/PipelineOverview';
 import { LimitationsTeaser } from '@/components/LimitationsTeaser';
 import { HomeFaq } from '@/components/HomeFaq';
 import { ClassicalQuoteReveal } from '@/components/ClassicalQuoteReveal';
@@ -94,7 +93,6 @@ export function HomePage() {
         </section>
 
         <HowItWorksSteps />
-        <PipelineOverview />
         <CapabilityTeaser />
         <LimitationsTeaser />
         <HomeFaq />

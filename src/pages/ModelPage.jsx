@@ -3,18 +3,13 @@ import { SiteFooter } from '@/components/SiteFooter';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { PrimaryCtaLink } from '@/components/PrimaryCtaLink';
 import { usePageMeta } from '@/hooks/usePageMeta';
-import {
-  MODEL_NAME,
-  PIPELINE_STEPS,
-  PRODUCT_NAME,
-} from '@/data/brand-copy';
+import { MODEL_NAME, PRODUCT_NAME } from '@/data/brand-copy';
 import { IconChevronRight } from '@/components/icons';
 
 export function ModelPage() {
   usePageMeta({
-    title: 'AyurGenix V9.2 model overview',
-    description:
-      'AyurGenix V9.2: multi-task clinical inference with classical formulation matching and safety screening for practitioner review.',
+    title: 'Model overview',
+    description: `${PRODUCT_NAME} clinical decision support powered by ${MODEL_NAME} for practitioner review.`,
     path: '/model',
   });
 
@@ -33,30 +28,11 @@ export function ModelPage() {
             <p className="text-label mb-3">{PRODUCT_NAME}</p>
             <h1 className="type-page-title">{MODEL_NAME}</h1>
             <p className="section-lede">
-              A neuro-symbolic Ayurvedic clinical decision-support model: neural
-              multi-task inference plus a classical knowledge kosha in one
-              production workflow.
+              Clinical decision support for Ayurveda: structured intake,
+              citation-backed suggestions, and safety flags for qualified
+              practitioner review.
             </p>
           </header>
-
-          <section className="content-page__section" aria-labelledby="model-pipeline-heading">
-            <h2 id="model-pipeline-heading" className="content-stack__title">
-              Inference path
-            </h2>
-            <ol className="pipeline-overview__list mt-6">
-              {PIPELINE_STEPS.map((item) => (
-                <li key={item.step} className="pipeline-overview__item">
-                  <span className="pipeline-overview__step font-data">
-                    {item.step}
-                  </span>
-                  <h3 className="pipeline-overview__title">{item.title}</h3>
-                  <p className="pipeline-overview__body text-body-sm">
-                    {item.body}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </section>
 
           <div className="content-page__actions">
             <PrimaryCtaLink variant="simple" />

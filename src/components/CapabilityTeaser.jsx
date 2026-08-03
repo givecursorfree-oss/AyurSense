@@ -11,12 +11,12 @@ export function CapabilityTeaser() {
       <div className="page-container capabilities-section__intro">
         <div className="section-header mb-0">
           <h2 className="section-heading">
-            Seven analyses,{' '}
+            Clinical analyses,{' '}
             <span className="section-heading__muted">one intake</span>
           </h2>
           <p className="section-lede">
-            Dosha, herbs, severity, toxicity, drug-herb conflict, side-effects,
-            and dosage, plus classical formulation alignment in AyurGenix V9.2.
+            Dosha, herbs, severity, safety, and dosage guidance in one
+            practitioner-facing report.
           </p>
         </div>
       </div>

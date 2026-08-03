@@ -8,7 +8,6 @@ import {
   LIMITATIONS_SHORT,
   MEDICAL_DISCLAIMER,
   SCOPE_CAVEAT,
-  MODEL_NAME,
   PRODUCT_NAME,
 } from '@/data/brand-copy';
 import { IconChevronRight } from '@/components/icons';
@@ -17,18 +16,18 @@ const EXTENDED_LIMITS = [
   ...LIMITATIONS_SHORT,
   {
     title: 'Herb-herb coverage is partial',
-    body: 'Classical pair rules run first; a Random Forest fallback covers additional pairs but not every possible herb combination.',
+    body: 'Interaction screening covers curated pairs and common combinations, not every possible herb pairing.',
   },
   {
     title: 'Classical citations are curated',
-    body: 'References come from the kosha embedded in V9.2 - not exhaustively verified against manuscripts for every line.',
+    body: 'References shown with matched formulas are curated for decision support and are not a manuscript-critical edition.',
   },
 ];
 
 export function LimitationsPage() {
   usePageMeta({
     title: 'Limitations and ethics',
-    description: `${PRODUCT_NAME} limitations: educational CDS only, symbolic formulation match, and limited drug-herb keyword screening.`,
+    description: `${PRODUCT_NAME} limitations: educational CDS only, assistive formulation match, and limited medication keyword screening.`,
     path: '/limitations',
   });
 
@@ -46,8 +45,8 @@ export function LimitationsPage() {
           <header className="content-page__header">
             <h1 className="type-page-title">Limitations and ethics</h1>
             <p className="section-lede">
-              {PRODUCT_NAME} runs {MODEL_NAME}. Use it as decision support under
-              practitioner review - never as autonomous diagnosis or treatment.
+              Use {PRODUCT_NAME} as decision support under practitioner review -
+              never as autonomous diagnosis or treatment.
             </p>
           </header>
 

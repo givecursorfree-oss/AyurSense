@@ -60,8 +60,8 @@ export const AYUR_CLASSICAL_FORMULATION_CARD = {
   badge: 'AyurGenix signature',
   title: 'CLASSICAL FORMULATION ALIGNMENT',
     description:
-    'AyurGenix V9.2 matches formulations grounded in classical grantha sources - not generic herb lists.',
-  highlights: ['Grantha citations', 'Practitioner review'],
+    'AyurSense matches formulations grounded in classical sources - not generic herb lists.',
+  highlights: ['Cited suggestions', 'Practitioner review'],
   thiingsSlug: 'potions-book',
   icon: {
     src: thiingsIconUrl('nJa8u8YodOrRhi7VeQkbYIzL6C6bsA'),

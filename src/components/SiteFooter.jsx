@@ -5,14 +5,9 @@ import {
   FOOTER_PRODUCT_INTAKE,
   FOOTER_TRUST,
 } from '@/data/site-nav';
-import { MEDICAL_DISCLAIMER, MODEL_NAME, PRODUCT_NAME } from '@/data/brand-copy';
+import { MEDICAL_DISCLAIMER, PRODUCT_NAME } from '@/data/brand-copy';
 
 const RESOURCE_LINKS = [
-  {
-    label: 'AyurGenix V9.2 API (HF)',
-    href: 'https://huggingface.co/spaces/hnninioi/AyurGenixV9-API',
-    external: true,
-  },
   { label: 'Clinical report', to: '/intake#report' },
   { label: 'Limitations & ethics', to: '/limitations' },
 ];
@@ -29,9 +24,8 @@ export function SiteFooter({ intakePage = false }) {
             <BrandName size="xl" inverse className="site-footer__brand-name" />
           </Link>
           <p className="site-footer__tagline">
-            {PRODUCT_NAME} · {MODEL_NAME}. Multi-task Ayurvedic clinical
-            intelligence with citation-backed formulations and herb-herb safety
-            screening.
+            {PRODUCT_NAME}. Ayurvedic clinical decision support with
+            citation-backed suggestions and safety flags for practitioner review.
           </p>
         </div>
 
@@ -51,18 +45,8 @@ export function SiteFooter({ intakePage = false }) {
             <p className="site-footer__label text-label">Resources</p>
             <ul className="site-footer__links">
               {RESOURCE_LINKS.map((link) => (
-                <li key={link.href ?? link.to}>
-                  {link.external ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link to={link.to}>{link.label}</Link>
-                  )}
+                <li key={link.to}>
+                  <Link to={link.to}>{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -84,7 +68,7 @@ export function SiteFooter({ intakePage = false }) {
       <div className="site-footer__bar">
         <div className="site-footer__bar-inner page-container flex flex-col gap-3 py-6 md:flex-row md:items-start md:justify-between">
           <p className="site-footer__copy text-xs text-dark-stone max-w-2xl">
-            © {year} {PRODUCT_NAME} · {MODEL_NAME}. {MEDICAL_DISCLAIMER}
+            © {year} {PRODUCT_NAME}. {MEDICAL_DISCLAIMER}
           </p>
         </div>
       </div>

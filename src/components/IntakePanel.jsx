@@ -4,7 +4,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { MedicalDisclaimer } from '@/components/MedicalDisclaimer';
 import {
   MEDICATION_HINT,
-  MODEL_NAME,
   PRODUCT_NAME,
 } from '@/data/brand-copy';
 import {
@@ -77,8 +76,8 @@ export function IntakePanel({
                 Clinical <span className="text-dark-stone">analysis</span>
               </h2>
               <p className="intake-panel__lede mt-2 max-w-md text-body-copy text-dark-stone">
-                {PRODUCT_NAME} runs {MODEL_NAME}: dosha, herbs, formulation
-                match, interactions, and dosage in one pass.
+                {PRODUCT_NAME}: dosha, herbs, formulation match, interactions,
+                and dosage in one pass.
               </p>
             </div>
           </div>
@@ -321,7 +320,7 @@ export function IntakePanel({
               {loading ? (
                 <>
                   <IconSpinner size={18} />
-                  Analyzing with {MODEL_NAME}…
+                  Analyzing clinical intake…
                 </>
               ) : step === 1 ? (
                 <>

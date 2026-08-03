@@ -30,14 +30,14 @@ const STEPS = [
   },
   {
     step: '02',
-    title: 'Run AyurGenix V9.2',
-    body: 'Seven neural heads plus classical formulation matching and herb-herb safety screening.',
+    title: 'Run clinical analysis',
+    body: 'AyurSense prepares dosha, herbs, formulation alignment, and safety flags for review.',
     image: HOW_IT_WORKS_IMAGES.inference,
   },
   {
     step: '03',
     title: 'Review the report',
-    body: 'Export a structured report with grantha citations and practitioner-facing safety flags.',
+    body: 'Export a structured report with citations and practitioner-facing safety notes.',
     image: HOW_IT_WORKS_IMAGES.report,
   },
 ];
