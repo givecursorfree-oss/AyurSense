@@ -39,34 +39,6 @@ export function ModelPage() {
             </p>
           </header>
 
-          <section className="content-page__section" aria-labelledby="model-compose-heading">
-            <h2 id="model-compose-heading" className="content-stack__title">
-              What V9.2 provides
-            </h2>
-            <ul className="content-stack mt-6">
-              <li className="content-stack__item">
-                <h3 className="font-display text-lg font-light text-inkwell tracking-tight">
-                  Neural clinical layer
-                </h3>
-                <p className="mt-2 text-body-sm">
-                  Multi-task inference for herbs, dosha, severity, drug-herb
-                  conflict, toxicity, side-effects, and dosage guidance for
-                  practitioner review.
-                </p>
-              </li>
-              <li className="content-stack__item">
-                <h3 className="font-display text-lg font-light text-inkwell tracking-tight">
-                  Classical knowledge kosha
-                </h3>
-                <p className="mt-2 text-body-sm">
-                  Citation-backed formulation matching, herb monographs for
-                  rasa, virya, and vipaka grounding, plus interaction screening
-                  for safety flags.
-                </p>
-              </li>
-            </ul>
-          </section>
-
           <section className="content-page__section" aria-labelledby="model-pipeline-heading">
             <h2 id="model-pipeline-heading" className="content-stack__title">
               Inference path
