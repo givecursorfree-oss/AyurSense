@@ -4,7 +4,6 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { PrimaryCtaLink } from '@/components/PrimaryCtaLink';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import {
-  CLASSICAL_TEXTS,
   MODEL_NAME,
   PIPELINE_STEPS,
   PRODUCT_NAME,
@@ -85,19 +84,6 @@ export function ModelPage() {
                 </li>
               ))}
             </ol>
-          </section>
-
-          <section className="content-page__section" aria-labelledby="model-texts-heading">
-            <h2 id="model-texts-heading" className="content-stack__title">
-              Primary classical texts
-            </h2>
-            <ul className="knowledge-section__texts mt-6">
-              {CLASSICAL_TEXTS.map((name) => (
-                <li key={name} className="knowledge-section__chip">
-                  {name}
-                </li>
-              ))}
-            </ul>
           </section>
 
           <div className="content-page__actions">

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { CLASSICAL_TEXTS } from '@/data/brand-copy';
 import { IconChevronRight } from '@/components/icons';
 
 export function KnowledgeSection() {
@@ -19,14 +18,6 @@ export function KnowledgeSection() {
           V9.2 matches formulations with grantha references and grounds herbs
           in rasa, virya, and vipaka for practitioner review.
         </p>
-
-        <ul className="knowledge-section__texts mt-8" aria-label="Primary classical texts">
-          {CLASSICAL_TEXTS.map((name) => (
-            <li key={name} className="knowledge-section__chip">
-              {name}
-            </li>
-          ))}
-        </ul>
 
         <div className="mt-8">
           <Link to="/model" className="btn-secondary">

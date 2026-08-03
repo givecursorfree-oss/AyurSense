@@ -50,15 +50,6 @@ export const PIPELINE_STEPS = [
   },
 ];
 
-export const CLASSICAL_TEXTS = [
-  'Bhaishajya Ratnavali',
-  'Ashtanga Hrudayam',
-  'Charaka Samhita',
-  'Sharngadhara Samhita',
-  'Bhavaprakasha',
-  'Sahasrayogam',
-];
-
 export const LIMITATIONS_SHORT = [
   {
     title: 'Not full drug-drug checking',
@@ -89,7 +80,7 @@ export const HOME_FAQ = [
   },
   {
     q: 'What does a classical citation mean?',
-    a: 'When a formulation is matched, AyurSense shows the classical text reference embedded in the V9.2 knowledge bundle (for example Bhaishajya Ratnavali chapter citations).',
+    a: 'When a formulation is matched, AyurSense shows the classical text reference embedded in the V9.2 knowledge bundle.',
   },
   {
     q: 'Why mention medications?',
