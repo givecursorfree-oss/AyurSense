@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { BrandName } from '@/components/BrandName';
 import { IconChevronRight, IconSpark } from '@/components/icons';
-import { CounterStatCard, MODEL_STATS } from '@/components/CounterStatCard';
 import { HowItWorksSteps } from '@/components/HowItWorksSteps';
 import { CapabilityTeaser } from '@/components/CapabilityTeaser';
 import { PipelineOverview } from '@/components/PipelineOverview';
@@ -77,8 +76,8 @@ export function HomePage() {
         <section className="hero-atmosphere hero-atmosphere--compact border-b border-light-steel">
           <div className="hero-gradient hero-gradient--center" aria-hidden="true" />
 
-          <div className="hero-content page-container hero-content--split">
-            <div className="hero-copy min-w-0 text-left">
+          <div className="hero-content page-container">
+            <div className="hero-copy min-w-0 max-w-2xl text-left">
               <p className="hero-eyebrow text-label inline-flex items-center gap-2 border border-light-steel bg-canvas/90 px-3 py-1.5">
                 <IconSpark size={14} className="shrink-0 text-ember-orange" />
                 Clinical decision support
@@ -95,15 +94,6 @@ export function HomePage() {
                   {CTA_SECONDARY}
                   <IconChevronRight size={16} className="btn-icon" aria-hidden />
                 </Link>
-              </div>
-            </div>
-
-            <div id="performance" className="hero-metrics scroll-mt-24 w-full min-w-0">
-              <p className="text-label mb-3 sm:mb-4">Model performance</p>
-              <div className="stats-grid">
-                {MODEL_STATS.map((stat) => (
-                  <CounterStatCard key={stat.label} {...stat} />
-                ))}
               </div>
             </div>
           </div>

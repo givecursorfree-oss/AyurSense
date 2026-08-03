@@ -4,7 +4,6 @@ export const HOME_SCROLL_SECTIONS = [
   'how-it-works',
   'capabilities',
   'knowledge',
-  'performance',
   'faq',
 ];
 

@@ -16,8 +16,8 @@ export function KnowledgeSection() {
           <span className="section-heading__muted">not generic herb lists</span>
         </h2>
         <p className="section-lede">
-          V9.2 embeds 176 formulations with grantha references and 704 herb
-          monographs for rasa, virya, and vipaka grounding.
+          V9.2 matches formulations with grantha references and grounds herbs
+          in rasa, virya, and vipaka for practitioner review.
         </p>
 
         <ul className="knowledge-section__texts mt-8" aria-label="Primary classical texts">

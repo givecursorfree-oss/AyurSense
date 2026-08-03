@@ -15,15 +15,8 @@ const translations = {
     // Hero
     eyebrow: 'Ayurvedic clinical intelligence',
     heroSubtitle: 'Predictive medicine, one intake',
-    heroDescription: 'Multi-task inference across dosha, severity, herbs, interactions, and dosage — powered by IndicBERTv2 + LoRA on Hugging Face.',
+    heroDescription: 'Multi-task inference across dosha, severity, herbs, interactions, and dosage for practitioner review.',
     startAnalysis: 'Start clinical analysis',
-    modelPerformance: 'Model performance',
-
-    // Stats
-    herbAccuracy: 'Herb Accuracy',
-    doshaClassification: 'Dosha Classification',
-    drugConflictF1: 'Drug Conflict F1',
-    dosageMAE: 'Dosage MAE',
 
     // Intake Form
     patientIntake: 'Patient Intake',
@@ -74,15 +67,8 @@ const translations = {
     // Hero
     eyebrow: 'आयुर्वेदिक नैदानिक बुद्धिमत्ता',
     heroSubtitle: 'एक परीक्षण में पूर्वानुमानित चिकित्सा',
-    heroDescription: 'दोष, गंभीरता, जड़ी-बूटी, परस्पर क्रिया और खुराक में बहु-कार्य अनुमान — IndicBERTv2 + LoRA द्वारा संचालित।',
+    heroDescription: 'दोष, गंभीरता, जड़ी-बूटी, परस्पर क्रिया और खुराक में बहु-कार्य अनुमान — चिकित्सक समीक्षा हेतु।',
     startAnalysis: 'नैदानिक विश्लेषण शुरू करें',
-    modelPerformance: 'मॉडल प्रदर्शन',
-
-    // Stats
-    herbAccuracy: 'जड़ी-बूटी सटीकता',
-    doshaClassification: 'दोष वर्गीकरण',
-    drugConflictF1: 'औषध संघर्ष F1',
-    dosageMAE: 'खुराक MAE',
 
     // Intake Form
     patientIntake: 'रोगी परीक्षण',
@@ -133,15 +119,8 @@ const translations = {
     // Hero
     eyebrow: 'आयुर्वेदीय चिकित्सा बुद्धिमत्ता',
     heroSubtitle: 'एकस्मिन् परीक्षणे पूर्वानुमानित चिकित्सा',
-    heroDescription: 'दोष-तीव्रता-औषधि-परस्परक्रिया-मात्रासु बहुकार्यानुमानम् — IndicBERTv2 + LoRA इत्यनेन संचालितम्।',
+    heroDescription: 'दोष-तीव्रता-औषधि-परस्परक्रिया-मात्रासु बहुकार्यानुमानम् — चिकित्सक समीक्षार्थम्।',
     startAnalysis: 'चिकित्सा विश्लेषणम् आरभताम्',
-    modelPerformance: 'प्रतिरूप प्रदर्शनम्',
-
-    // Stats
-    herbAccuracy: 'औषधि सटीकता',
-    doshaClassification: 'दोष वर्गीकरणम्',
-    drugConflictF1: 'औषध संघर्ष F1',
-    dosageMAE: 'मात्रा MAE',
 
     // Intake Form
     patientIntake: 'रोगी परीक्षणम्',

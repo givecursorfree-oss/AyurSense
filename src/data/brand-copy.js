@@ -12,8 +12,8 @@ export const DEFAULT_DESCRIPTION =
 export const MEDICAL_DISCLAIMER =
   'For research and educational clinical decision support only. Not a substitute for diagnosis, treatment, or advice from a licensed physician or qualified Ayurvedic practitioner.';
 
-export const METRICS_CAVEAT =
-  'Overall clinical accuracy (99.98%) is from the clinical_97 template-holdout evaluation (in-distribution). Free-text out-of-distribution symptoms may score lower.';
+export const SCOPE_CAVEAT =
+  'Outputs vary with free-text wording and case context. Always review with a qualified practitioner before clinical use.';
 
 export const HERO_HEADLINE = 'From symptoms to a citation-backed clinical report';
 export const HERO_SUPPORT =
@@ -21,14 +21,6 @@ export const HERO_SUPPORT =
 
 export const CTA_PRIMARY = 'Start patient intake';
 export const CTA_SECONDARY = 'See how it works';
-
-/** V9.2 proof counts - from production model report */
-export const MODEL_PROOF = [
-  { value: '176', label: 'Classical formulations', hint: 'With grantha citations' },
-  { value: '704', label: 'Herb monographs', hint: 'Rasa · virya · vipaka' },
-  { value: '7', label: 'Neural heads', hint: 'One inference pass' },
-  { value: '10', label: 'Classical texts', hint: 'Including Bhaishajya Ratnavali' },
-];
 
 export const PIPELINE_STEPS = [
   {
@@ -39,7 +31,7 @@ export const PIPELINE_STEPS = [
   {
     step: '02',
     title: 'Neural inference',
-    body: 'Seven heads: herbs, dosha, severity, conflict, toxicity, side-effects, dosage.',
+    body: 'Multi-task heads for herbs, dosha, severity, conflict, toxicity, side-effects, and dosage.',
   },
   {
     step: '03',
@@ -49,7 +41,7 @@ export const PIPELINE_STEPS = [
   {
     step: '04',
     title: 'Interaction screen',
-    body: 'Classical pairs first, then Random Forest: Synergistic, Caution, or Contraindicated.',
+    body: 'Classical pairs first, then a learned fallback: Synergistic, Caution, or Contraindicated.',
   },
   {
     step: '05',
@@ -74,11 +66,11 @@ export const LIMITATIONS_SHORT = [
   },
   {
     title: 'Formulation match is symbolic',
-    body: '176 formulas are scored by symptom and herb overlap, not end-to-end learned retrieval.',
+    body: 'Formulas are scored by symptom and herb overlap, not end-to-end learned retrieval.',
   },
   {
-    title: 'Metrics are in-distribution',
-    body: '99.98% overall clinical accuracy is template-holdout; free-text OOD may differ.',
+    title: 'Case wording matters',
+    body: 'Free-text intake can change outputs. Treat every report as decision support, not a fixed score.',
   },
   {
     title: 'Educational CDS only',
@@ -104,8 +96,8 @@ export const HOME_FAQ = [
     a: 'Optional current medications help the drug-herb conflict head flag overlaps with high-risk herbs (for example anticoagulants or insulin with certain botanicals).',
   },
   {
-    q: 'What model runs under the hood?',
-    a: 'AyurGenix V9.2 merges IndicBERTv2 + LoRA neural heads with a classical kosha of 176 formulations and 704 herb monographs in one deployable checkpoint.',
+    q: 'What runs under the hood?',
+    a: 'AyurGenix V9.2 combines neural multi-task inference with a classical knowledge kosha for formulation matching and safety screening in one production workflow.',
   },
 ];
 

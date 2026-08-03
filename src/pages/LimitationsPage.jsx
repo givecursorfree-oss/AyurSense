@@ -7,7 +7,7 @@ import { usePageMeta } from '@/hooks/usePageMeta';
 import {
   LIMITATIONS_SHORT,
   MEDICAL_DISCLAIMER,
-  METRICS_CAVEAT,
+  SCOPE_CAVEAT,
   MODEL_NAME,
   PRODUCT_NAME,
 } from '@/data/brand-copy';
@@ -17,18 +17,18 @@ const EXTENDED_LIMITS = [
   ...LIMITATIONS_SHORT,
   {
     title: 'Herb-herb coverage is partial',
-    body: 'Five curated classical pairs are rule-first; Random Forest covers additional pairs but not an exhaustive matrix of all 704 herbs.',
+    body: 'Classical pair rules run first; a Random Forest fallback covers additional pairs but not every possible herb combination.',
   },
   {
     title: 'Classical citations are curated',
-    body: 'References come from the kosha JSON embedded in V9.2 - not exhaustively verified against manuscripts for every line.',
+    body: 'References come from the kosha embedded in V9.2 - not exhaustively verified against manuscripts for every line.',
   },
 ];
 
 export function LimitationsPage() {
   usePageMeta({
     title: 'Limitations and ethics',
-    description: `${PRODUCT_NAME} limitations: educational CDS only, in-distribution metrics, symbolic formulation match, and limited drug-herb keyword screening.`,
+    description: `${PRODUCT_NAME} limitations: educational CDS only, symbolic formulation match, and limited drug-herb keyword screening.`,
     path: '/limitations',
   });
 
@@ -52,7 +52,7 @@ export function LimitationsPage() {
           </header>
 
           <aside className="content-callout" role="note">
-            <p className="text-body-sm text-inkwell">{METRICS_CAVEAT}</p>
+            <p className="text-body-sm text-inkwell">{SCOPE_CAVEAT}</p>
           </aside>
 
           <ul className="content-stack">

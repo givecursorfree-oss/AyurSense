@@ -78,7 +78,7 @@ export const AYURVEDA_PATH_NODES = [
     type: 'pipeline',
     step: '04',
     title: 'Dosha inference',
-    teaser: 'IndicBERTv2 + LoRA classifies prakriti imbalance from your narrative.',
+    teaser: 'Neural classification of prakriti imbalance from your narrative.',
     pathProgress: 0.52,
   },
   {

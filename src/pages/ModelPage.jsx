@@ -2,12 +2,10 @@ import { Link } from 'react-router-dom';
 import { SiteFooter } from '@/components/SiteFooter';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { PrimaryCtaLink } from '@/components/PrimaryCtaLink';
-import { ModelProofStrip } from '@/components/ModelProofStrip';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import {
   CLASSICAL_TEXTS,
   MODEL_NAME,
-  MODEL_PROOF,
   PIPELINE_STEPS,
   PRODUCT_NAME,
 } from '@/data/brand-copy';
@@ -17,7 +15,7 @@ export function ModelPage() {
   usePageMeta({
     title: 'AyurGenix V9.2 model overview',
     description:
-      'AyurGenix V9.2: IndicBERTv2 + LoRA neural heads merged with 176 cited formulations, 704 herb monographs, and herb-herb safety screening.',
+      'AyurGenix V9.2: multi-task clinical inference with classical formulation matching and safety screening for practitioner review.',
     path: '/model',
   });
 
@@ -38,33 +36,33 @@ export function ModelPage() {
             <p className="section-lede">
               A neuro-symbolic Ayurvedic clinical decision-support model: neural
               multi-task inference plus a classical knowledge kosha in one
-              production checkpoint.
+              production workflow.
             </p>
           </header>
 
           <section className="content-page__section" aria-labelledby="model-compose-heading">
             <h2 id="model-compose-heading" className="content-stack__title">
-              What V9.2 contains
+              What V9.2 provides
             </h2>
             <ul className="content-stack mt-6">
               <li className="content-stack__item">
                 <h3 className="font-display text-lg font-light text-inkwell tracking-tight">
-                  Neural layer (from V9.1)
+                  Neural clinical layer
                 </h3>
                 <p className="mt-2 text-body-sm">
-                  IndicBERTv2 + LoRA with seven heads: herbs (27), dosha (9),
-                  severity (5), drug-herb conflict, toxicity (3), side-effects
-                  (8), and dosage regression.
+                  Multi-task inference for herbs, dosha, severity, drug-herb
+                  conflict, toxicity, side-effects, and dosage guidance for
+                  practitioner review.
                 </p>
               </li>
               <li className="content-stack__item">
                 <h3 className="font-display text-lg font-light text-inkwell tracking-tight">
-                  Knowledge kosha (from V9)
+                  Classical knowledge kosha
                 </h3>
                 <p className="mt-2 text-body-sm">
-                  {MODEL_PROOF[0].value} classical formulations with citations,{' '}
-                  {MODEL_PROOF[1].value} herb monographs, classical interaction
-                  pairs, and a Random Forest herb-herb fallback.
+                  Citation-backed formulation matching, herb monographs for
+                  rasa, virya, and vipaka grounding, plus interaction screening
+                  for safety flags.
                 </p>
               </li>
             </ul>
@@ -111,7 +109,6 @@ export function ModelPage() {
           </div>
         </div>
 
-        <ModelProofStrip />
         <SiteFooter />
       </main>
     </div>

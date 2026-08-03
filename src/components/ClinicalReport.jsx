@@ -5,7 +5,7 @@ import { copyReportMarkdown } from '@/lib/report-export';
 import { downloadAyurvedicPrescriptionPdf } from '@/lib/prescription-pdf';
 import { isMeaningfulLabel } from '@/lib/parse-clinical-report';
 import {
-  METRICS_CAVEAT,
+  SCOPE_CAVEAT,
   MODEL_NAME,
   PRODUCT_NAME,
 } from '@/data/brand-copy';
@@ -196,7 +196,7 @@ export function ClinicalReport({ report, reportRef }) {
             Educational CDS only - not a prescription. Practitioner review
             required.
           </p>
-          <p className="mt-2 text-xs text-dark-stone">{METRICS_CAVEAT}</p>
+          <p className="mt-2 text-xs text-dark-stone">{SCOPE_CAVEAT}</p>
           <p className="mt-2">
             <Link to="/limitations" className="text-sm text-ember-orange underline-offset-2 hover:underline">
               Read full limitations &amp; ethics
